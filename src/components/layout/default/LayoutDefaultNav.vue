@@ -11,6 +11,7 @@ onClickOutside(searchDivRef, () => (searchString.value = ""));
 function handleAuthRoute(){
   router.push('/auth/login')
 }
+
 </script>
 
 <template>
@@ -91,7 +92,7 @@ function handleAuthRoute(){
             </div>
           </div>
         </div>
-        <button @click="handleAuthRoute" title="account"><Icon name="ri:account-circle-line" class="w-6 h-6" /></button>
+        <NuxtLink to="/auth/login" @click="handleAuthRoute" title="account"><Icon name="ri:account-circle-line" class="w-6 h-6" /></NuxtLink>
         <NuxtLink to="/checkout" title="bag" class="relative">
           <Icon name="ri:shopping-bag-2-line" class="w-6 h-6" />
         </NuxtLink>
