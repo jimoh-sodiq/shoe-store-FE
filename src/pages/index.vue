@@ -16,11 +16,13 @@
             <span class="text-white font-semibold">Cyber</span> ends november
             27.exclusions apply
           </p>
-          <button
-            class="uppercase mt-5 font-bold bg-black p-3 text-sm rounded-lg"
+          <NuxtLink
+            to="/product"
+            @click=""
+            class="uppercase mt-5 font-bold bg-black p-3 text-sm rounded-lg block w-fit"
           >
             shop now
-          </button>
+          </NuxtLink>
         </div>
         <div
           class="min-h-[450px] w-1/2 border-[#809C93] rounded border-[7px] flex items-center justify-center"
@@ -31,10 +33,10 @@
     </div>
     <section>
       <div class="uppercase py-4">
-        <h3 class="font-bold text-3xl text-center">
-          the season to save
-        </h3>
-        <p class="text-center text-sm text-gray-500 font-medium">see the latest holiday deal</p>
+        <h3 class="font-bold text-3xl text-center">the season to save</h3>
+        <p class="text-center text-sm text-gray-500 font-medium">
+          see the latest holiday deal
+        </p>
       </div>
     </section>
   </main>
