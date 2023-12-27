@@ -4,7 +4,7 @@
   <main class="">
     <div class="bg-[#003826] px-4 md:px-6">
       <div
-        class="text-white mx-auto max-w-[1400px] flex items-center gap-x-5 py-10"
+        class="text-white mx-auto max-w-[1400px] min-h-[600px] flex items-center gap-x-5 py-10"
       >
         <div class="w-1/2">
           <h1 class="uppercase font-bold text-3xl">

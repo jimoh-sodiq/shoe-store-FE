@@ -12,19 +12,8 @@ defineProps<{
 </script>
 
 <template>
-  <button :disabled="disabled" class="uppercase mt-5 text-white font-bold bg-black p-3 text-sm rounded-lg" :class="[grow ? 'w-full' : 'w-fit']">
-    <Icon
-      v-if="showLoadingSpinner && loading && preIcon && iconName"
-      :class="iconClass"
-      :name="iconName"
-    />
-    <span class="inline-block ">   {{ text }}</span>
-
-    <Icon
-      v-if="showLoadingSpinner && loading && !preIcon && iconName"
-      :class="iconClass"
-      :name="iconName"
-    />
- 
+  <button :disabled="loading || disabled" class="uppercase mt-5 text-white font-bold bg-black hover:bg-black/80 transition-colors p-3 text-sm rounded-lg" :class="[grow ? 'w-full' : 'w-fit']">
+    <span v-if="loading" class="inline-block ">loading...</span>
+    <span v-else class="inline-block ">   {{ text }}</span>
   </button>
 </template>
