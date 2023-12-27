@@ -1,3 +1,8 @@
+<script setup lang="ts">
+const router = useRouter()
+
+</script>
+
 <template>
   <main class="border-t">
     <div
@@ -5,7 +10,7 @@
     >
       <div class="max-w-lg w-full mx-auto space-y-4 mt-16">
         <h3 class="text-center font-medium uppercase">Your email have been verified successfully. Please proceed to the login page</h3>
-        <GlobalButton text="Login" grow />
+        <GlobalButton @click="router.push('/auth/login')" text="Login" grow />
       </div>
     </div>
   </main>

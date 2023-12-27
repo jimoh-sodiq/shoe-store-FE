@@ -8,7 +8,7 @@
       >
         <div class="w-1/2">
           <h1 class="uppercase font-bold text-3xl">
-            Cyber monday starts earlyup
+            Cyber monday starts early up
           </h1>
           <p class="uppercase text-2xl mt-2">up to 60% off + extra 25% off</p>
           <p class="uppercase text-xs mt-2 text-gray-300">
