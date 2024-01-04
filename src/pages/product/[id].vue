@@ -1,5 +1,5 @@
 <template>
-  <main class="py-10 px-4">
+  <main class="pt-10 pb-16 px-4">
     <div class="flex flex-col lg:flex-row gap-6 mx-auto max-w-[1400px] w-full">
       <section class="w-full lg:w-2/3 grid gap-1 grid-cols-2">
         <NuxtImg
@@ -81,6 +81,40 @@
           </div>
         </div>
       </section>
+    </div>
+    <div class="mx-auto max-w-[1400px] w-full mt-16">
+      <div>
+        <h2 class="font-semibold text-xl">Description</h2>
+        <p class="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur
+          laboriosam laudantium iure commodi atque facere aliquam culpa in
+          corrupti corporis porro, eveniet nisi. Facere voluptatibus aut nihil
+          tempora quo labore. Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Excepturi exercitationem ea, incidunt vero sit dicta quia harum
+          omnis voluptatum amet atque culpa cumque suscipit asperiores rem fuga
+          accusantium, sed quam?
+        </p>
+      </div>
+      <div>
+        <h2 class="font-semibold text-xl mt-10">Reviews</h2>
+        <ul class="space-y-4 mt-3">
+          <l1>
+            <Icon
+              name="ph:star-fill"
+              class="text-gray-800 w-4 h-4"
+              v-for="n in 5"
+              :key="n"
+            />
+            <p class="text-sm">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio,
+              facilis ex. Porro, nostrum, repudiandae illum ducimus saepe
+              laborum omnis cumque quisquam repellat molestias nobis harum
+              corrupti excepturi laboriosam placeat dolorum?
+            </p>
+            <p class="font-bold text-sm uppercase">Jimoh Sodiq</p>
+          </l1>
+        </ul>
+      </div>
     </div>
   </main>
 </template>
