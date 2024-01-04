@@ -15,7 +15,7 @@ function handleAuthRoute(){
 </script>
 
 <template>
-  <nav class="p-4 md:p-6 h-20 sticky top-0 bg-white">
+  <nav class="p-4 md:p-6 h-20 sticky top-0 bg-white z-50">
     <div class="max-w-[1400px] mx-auto flex items-center justify-between">
       <NuxtLink to="/">
         <div>Logo</div>
