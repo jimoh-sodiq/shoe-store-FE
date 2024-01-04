@@ -1,6 +1,5 @@
 <script setup lang="ts">
-
-const router = useRouter()
+const router = useRouter();
 const searchString = ref("");
 const debouncedSearchString = refDebounced(searchString, 500);
 
@@ -8,26 +7,22 @@ const searchDivRef = ref(null);
 
 onClickOutside(searchDivRef, () => (searchString.value = ""));
 
-function handleAuthRoute(){
-  router.push('/auth/login')
+function handleAuthRoute() {
+  router.push("/auth/login");
 }
-
 </script>
 
 <template>
   <nav class="p-4 md:p-6 h-20 sticky top-0 bg-white z-50">
     <div class="max-w-[1400px] mx-auto flex items-center justify-between">
       <NuxtLink to="/">
-        <div>Logo</div>
+        <div class="flex items-center gap-x-1 select-none">
+          <Icon name="tabler:3d-cube-sphere" class="w-10 h-10" />
+          <p class="font-medium text-sm uppercase">J-shoes</p>
+        </div>
       </NuxtLink>
-      <div class="flex items-center gap-x-8 font-medium ml-[320px]">
-        <NuxtLink>MEN</NuxtLink>
-        <NuxtLink>WOMEN</NuxtLink>
-        <NuxtLink>KIDS</NuxtLink>
-        <NuxtLink>UNISEX</NuxtLink>
-      </div>
-      <section class="flex items-center gap-x-2.5">
-        <div class="relative" ref="searchDivRef">
+      <div class="hidden md:flex items-center gap-x-8 w-full max-w-[400px]">
+        <div class="relative w-full" ref="searchDivRef">
           <label
             :class="
               searchString
@@ -92,7 +87,11 @@ function handleAuthRoute(){
             </div>
           </div>
         </div>
-        <NuxtLink to="/auth/login" @click="handleAuthRoute" title="account"><Icon name="ri:account-circle-line" class="w-6 h-6" /></NuxtLink>
+      </div>
+      <section class="flex items-center gap-x-2.5">
+        <NuxtLink to="/auth/login" @click="handleAuthRoute" title="account"
+          ><Icon name="ri:account-circle-line" class="w-6 h-6"
+        /></NuxtLink>
         <NuxtLink to="/checkout" title="bag" class="relative">
           <Icon name="ri:shopping-bag-2-line" class="w-6 h-6" />
         </NuxtLink>

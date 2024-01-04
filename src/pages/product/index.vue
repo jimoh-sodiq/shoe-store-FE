@@ -9,7 +9,7 @@ const showMyBag = ref(false);
       <section class="w-4/5">
         <div class="flex items-center justify-between gap-x-3">
           <h1 class="uppercase font-semibold text-xl">Products on sale</h1>
-          <GlobalButton text="See Bag" @click="showMyBag = true" />
+          <GlobalButton text="My Bag" @click="showMyBag = true" />
         </div>
         <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-4">
           <ProductItem v-for="n in 20" :key="n" />
