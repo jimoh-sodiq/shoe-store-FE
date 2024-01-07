@@ -1,15 +1,37 @@
+<script setup lang="ts">
+const name = ref("");
+const email = useAuthEmail();
+const password = ref("");
+const confirmPassword = ref("");
+
+const { register, isLoading } = useAuthState();
+</script>
+
 <template>
   <main class="border-t">
     <div
       class="max-w-[1400px] mx-auto p-4 md:p-6 flex items-center justify-center"
     >
-      <form @submit.prevent class="max-w-lg w-full mx-auto space-y-4 mt-16">
+      <form
+        @submit.prevent="register(name, email, password)"
+        class="max-w-lg w-full mx-auto space-y-4 mt-16"
+      >
         <h3 class="text-center font-medium uppercase">Register</h3>
-        <GlobalInput label="Name*" />
-        <GlobalInput label="Email*" type="email" />
-        <GlobalInput label="password*" type="password" />
-        <GlobalInput label="confirm password*" type="password" />
-        <GlobalButton text="Submit" grow />
+        <GlobalInput required label="Name*" v-model="name" />
+        <GlobalInput required label="Email*" type="email" v-model="email" />
+        <GlobalInput
+          required
+          label="password*"
+          type="password"
+          v-model="password"
+        />
+        <GlobalInput
+          required
+          label="confirm password*"
+          type="password"
+          v-model="confirmPassword"
+        />
+        <GlobalButton :loading="isLoading" text="Submit" grow type="submit" />
         <p class="text-center text-sm">Or</p>
         <NuxtLink
           to="/auth/login"

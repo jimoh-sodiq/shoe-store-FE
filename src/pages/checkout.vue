@@ -12,27 +12,29 @@
         </div>
       </section>
       <section class="w-full md:w-1/2 flex flex-col gap-5 h-fit">
-        <div class="rounded-lg bg-gray-50  shadow px-4">
+        <div class="rounded-lg bg-gray-50 shadow px-4">
           <h1 class="py-4 border-b-[2px] border-b-gray-100 font-medium text-xl">
             Delivery Info
           </h1>
           <div class="py-4 space-y-4">
-            <div class="flex items-start gap-x-4">
+            <!-- <div class="flex items-start gap-x-4">
               <GlobalInput label="First Name*" />
               <GlobalInput label="Last Name*" />
-            </div>
+            </div> -->
             <GlobalInput label="Address*" />
             <div class="flex items-start gap-x-4">
               <GlobalInput label="City*" />
               <GlobalInput label="State*" />
             </div>
-            <div class="flex items-start gap-x-4">
+            <!-- <div class="flex items-start gap-x-4">
               <GlobalInput label="Zip*" />
               <GlobalInput label="Phone*" />
-            </div>
+            </div> -->
           </div>
         </div>
-        <div>B</div>
+        <div>
+          <GlobalButton grow text="make order" />
+        </div>
       </section>
     </div>
   </main>

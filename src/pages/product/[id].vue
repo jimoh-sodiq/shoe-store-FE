@@ -1,6 +1,10 @@
 <template>
   <main class="pt-10 pb-16 px-4">
-    <div class="flex flex-col lg:flex-row gap-6 mx-auto max-w-[1400px] w-full">
+  <div class="mx-auto max-w-[1400px] w-full flex items-center gap-x-4 justify-between">
+    <NuxtLink to="/product" class="font-bold flex items-center p-2 gap-x-2"><Icon name="ph:arrow-left" class="w-6 h-8" />View products</NuxtLink>
+    <GlobalButton text="My bag" />
+  </div>
+    <div class="flex flex-col lg:flex-row gap-6 mx-auto max-w-[1400px] w-full mt-16">
       <section class="w-full lg:w-2/3 grid gap-1 grid-cols-2">
         <NuxtImg
           v-for="n in 4"
@@ -76,7 +80,7 @@
               5
             </div>
           </div>
-          <div>
+          <div class="mt-5">
             <GlobalButton text="ADD TO BAG" grow />
           </div>
         </div>
