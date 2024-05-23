@@ -18,7 +18,18 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-		baseUrl: process.env.API_BASE_URL,
+      baseUrl: process.env.NODE_ENV == 'development' ? process.env.API_BASE_URL_DEV : process.env.API_BASE_URL,
+    },
+  },
+  app: {
+    head: {
+      script: [{
+        type: 'text/javascript',
+        async: true,
+        src: 'https://embed.tawk.to/659f89d10ff6374032bebd93/1hjrj4nl4',
+        crossorigin: '',
+      }],
+
     },
   },
 });

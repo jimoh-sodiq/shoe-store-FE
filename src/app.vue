@@ -1,6 +1,12 @@
+<script setup lang="ts">
+onBeforeMount(async () => {
+  await useAuthState().getUserProfile()
+})
+</script>
+
 <template>
   <NuxtLayout>
     <NuxtPage />
-    <div id="modalroot"></div>
+    <GlobalToastContainer />
   </NuxtLayout>
 </template>

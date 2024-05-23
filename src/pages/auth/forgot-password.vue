@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { $toast } = useNuxtApp();
+// const { $toast } = useNuxtApp();
 
 const email = useAuthEmail();
 const { isLoading } = useAuthState();
@@ -11,7 +11,7 @@ const { isLoading } = useAuthState();
       class="max-w-[1400px] mx-auto p-4 md:p-6 flex items-center justify-center"
     >
       <form
-        @submit.prevent="$toast.success('toastify success')"
+        @submit.prevent
         class="max-w-lg w-full mx-auto space-y-4 mt-16"
       >
         <h3 class="text-center font-medium uppercase">Forgot Password</h3>

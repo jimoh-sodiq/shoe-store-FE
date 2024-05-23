@@ -26,7 +26,6 @@ interface Prop {
 const props = withDefaults(defineProps<Prop>(), {
   type: "text",
   modelValue: "",
-  id: "",
   label: "",
   placeholder: "",
   required: false,

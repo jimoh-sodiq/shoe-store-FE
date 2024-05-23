@@ -4,16 +4,10 @@ import { defu } from "defu";
 
 export interface ApiErrorResponse {
   name: string;
-  error: ApiErrorData;
   code: number;
   message: string; // this corresponds
   devMessage: string;
   data: null;
-}
-
-export interface ApiErrorData {
-  userMessage: string;
-  validationError: unknown[];
 }
 
 export function useCustomFetch<T>(
@@ -29,6 +23,7 @@ export function useCustomFetch<T>(
     baseURL: runtimeConfig.public.baseUrl,
     // cache request
     key: url,
+    credentials: 'include',
 
     // set user token if connected
     // headers: userAuthToken.value
@@ -39,11 +34,6 @@ export function useCustomFetch<T>(
         code: 0,
         data: null,
         devMessage: "Failed to complete the request",
-        error: {
-          userMessage:
-            "Failed to connect to the server, please check your internet connection and try again",
-          validationError: [],
-        },
         message:
           "Failed to connect to the server, please check your internet connection and try again",
         name: "client-error",
@@ -52,7 +42,6 @@ export function useCustomFetch<T>(
 
     onResponseError(_ctx) {
       console.log("Response error");
-      // clearError({redirect: "/discounts"})
       if (_ctx.response.status <= 500 && _ctx.response.status !== 404) {
         console.log("not 404, <=500");
         // This is most likely a 400 error, Bad request
@@ -65,19 +54,14 @@ export function useCustomFetch<T>(
           data: null,
           devMessage:
             "Fatal error with your request, please check the status code",
-          error: {
-            userMessage:
-              "Failed to connect with our servers, Kindly contact support at jimohsodiq301@gmail.com",
-            validationError: [],
-          },
           message:
             "Failed to connect with our servers, Kindly contact support at jimohsodiq301@gmail.com",
 
           name: "server-communication-error",
         };
       }
-      if (apiResponse.error.userMessage) {
-        apiResponse.message = apiResponse.error.userMessage;
+      if (apiResponse.message) {
+        apiResponse.message = apiResponse.message;
         // TODO: Compute validation errors here also
       }
       throw createError({

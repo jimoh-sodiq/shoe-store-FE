@@ -39,7 +39,7 @@ function handleBackgroundClick() {
 </script>
 
 <template>
-  <teleport to="#modalroot">
+  <teleport to="body">
     <transition :name="type" :mode="mode" appear>
       <div
         :class="defaultModalBackgroundClass"
