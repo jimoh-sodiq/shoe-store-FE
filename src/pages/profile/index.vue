@@ -1,18 +1,31 @@
 <script setup lang="ts">
 
-function logout(){
-    useToast().success("good boy")
+const loadingState = reactive({
+    loggingOut: false
+})
+
+async function handleLogout(){
+    loadingState.loggingOut = true
+    await useAuthState().logout()
+    useToast().success("You have been logged out successfully")
+    loadingState.loggingOut = false
 }
 async function getProfile(){
-    await useAuthState().getUserProfile()
+    await useAuthState().showCurrentUser()
 }
+
+const signedInUser = useSignedInUser()
+
+
 
 
 </script>
 
 <template>
-    <div>
-        <button @click="getProfile">Logout</button>
-        {{ useUserProfile }}
+    <div class="flex flex-col">
+    {{ loadingState.loggingOut }}
+        <button @click="handleLogout">Logout</button>
+        <button @click="getProfile">Get Profile</button>
+        {{ signedInUser }}
     </div>
 </template>

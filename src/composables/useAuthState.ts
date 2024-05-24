@@ -1,14 +1,17 @@
 import type { LocationQueryValue } from "vue-router";
+import type { SignedInUser } from './types/userTypes';
 
 export const useAuthEmail = () => useState<string>("authEmail", () => "");
 
 export const userIsLoggedIn = () =>
   useState<boolean>("userIsLoggedIn", () => false);
 
-export const useUserProfile =  ref<any | null>(null)
+export const useSignedInUser = () => useState<SignedInUser | null | undefined>("signedInUser", () => null);
 
 export const useAuthState = () => {
+  const signedInUser =  useSignedInUser()
   const router = useRouter();
+  const isLoggedIn = userIsLoggedIn()
 
   const isLoading = ref(false);
   const error = ref(false);
@@ -56,12 +59,12 @@ export const useAuthState = () => {
       watch: false,
     });
     await execute();
-    const getProfileError = await getUserProfile();
+    const {error: getProfileError, data: profileData} = await showCurrentUser();
     isLoading.value = false;
     loginError.value = error.value;
-    // if (getProfileError) {
-    //   loginError.value = error.value;
-    // }
+    if (getProfileError.value) {
+      loginError.value = getProfileError.value;
+    }
     if (loginError.value) {
       return useToast().error(loginError.value.message);
     }
@@ -96,21 +99,53 @@ export const useAuthState = () => {
     }
   }
 
-  async function getUserProfile() {
-    const { execute, error, data } = await useCustomFetch("/api/v1/users/show", {
-      method: "GET",
-      server: false,
-      lazy: true,
-      watch: false,
-      immediate: false,
-    });
+  async function showCurrentUser() {
+    const { execute, error, data } = await useCustomFetch<ShowCurrentUserResponse>(
+      "/api/v1/users/show",
+      {
+        method: "GET",
+        server: false,
+        lazy: true,
+        watch: false,
+        immediate: false,
+      }
+    );
     await execute();
-    useUserProfile.value = data
-    return error.value;
+    if(error.value) {
+      await logout()
+      isLoggedIn.value = false
+      return {
+        error,
+        data,
+      };
+    }
+    signedInUser.value= data.value?.data;
+
+    // 
+    return {
+      error,
+      data,
+    };
   }
 
   async function logout() {
-    return useToast().warn("please put in yur");
+    const { execute, error, data } = await useCustomFetch<ShowCurrentUserResponse>(
+      "/api/v1/auth/logout",
+      {
+        method: "DELETE",
+        server: false,
+        lazy: true,
+        watch: false,
+        immediate: false,
+      }
+    );
+    await execute();
+    if(error.value){
+      return  {error, success: false}
+    }
+    isLoggedIn.value = false
+    signedInUser.value = null
+    return {error, success: true}
   }
 
   return {
@@ -120,6 +155,7 @@ export const useAuthState = () => {
     error,
     verifyEmail,
     verifyEmailError,
-    getUserProfile,
+    showCurrentUser,
+    logout,
   };
 };

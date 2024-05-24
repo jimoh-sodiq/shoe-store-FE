@@ -25,10 +25,6 @@ export function useCustomFetch<T>(
     key: url,
     credentials: 'include',
 
-    // set user token if connected
-    // headers: userAuthToken.value
-    //   ? { Authorization: `Bearer ${userAuthToken.value}` }
-    //   : {},
     onRequestError() {
       apiResponse = {
         code: 0,
@@ -76,5 +72,5 @@ export function useCustomFetch<T>(
   // for nice deep defaults, please use unjs/defu
   const params = defu(options, defaults);
 
-  return useFetch(url, params);
+  return useFetch<T>(url, params);
 }

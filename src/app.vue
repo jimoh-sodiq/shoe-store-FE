@@ -1,6 +1,6 @@
 <script setup lang="ts">
 onBeforeMount(async () => {
-  await useAuthState().getUserProfile()
+  await useAuthState().showCurrentUser()
 })
 </script>
 

@@ -7,9 +7,8 @@ const searchDivRef = ref(null);
 
 onClickOutside(searchDivRef, () => (searchString.value = ""));
 
-function handleAuthRoute() {
-  router.push("/auth/login");
-}
+const signedInUser = useSignedInUser()
+
 </script>
 
 <template>
@@ -23,41 +22,27 @@ function handleAuthRoute() {
       </NuxtLink>
       <div class="hidden md:flex items-center gap-x-8 w-full max-w-[400px]">
         <div class="relative w-full" ref="searchDivRef">
-          <label
-            :class="
-              searchString
-                ? 'rounded-t-xl bg-white border-t border-x border-gray-300'
-                : 'rounded-xl bg-[#F2F4F5]'
-            "
-            class="px-4 py-2.5 w-full flex items-center gap-x-4"
-          >
+          <label :class="searchString
+              ? 'rounded-t-xl bg-white border-t border-x border-gray-300'
+              : 'rounded-xl bg-[#F2F4F5]'
+            " class="px-4 py-2.5 w-full flex items-center gap-x-4">
             <Icon name="ph:magnifying-glass" class="cursor-pointer" />
-            <input
-              v-model.trim="searchString"
-              type="search"
-              placeholder="Search products"
-              class="flex-auto text-gray-600 bg-transparent outline-none text-sm"
-            />
+            <input v-model.trim="searchString" type="search" placeholder="Search products"
+              class="flex-auto text-gray-600 bg-transparent outline-none text-sm" />
           </label>
-          <div
-            v-if="searchString"
-            class="absolute bg-white rounded-b-xl w-full border-t-[1px] border border-gray-300 p-2.5"
-          >
+          <div v-if="searchString"
+            class="absolute bg-white rounded-b-xl w-full border-t-[1px] border border-gray-300 p-2.5">
             <p class="ups-font-label-semibold text-text-secondary">
               search results:
             </p>
             <div class="mt-2">
-              <p
-                class="text-center py-5 text-text-secondary ups-font-label-semibold"
-              >
+              <p class="text-center py-5 text-text-secondary ups-font-label-semibold">
                 searching...
               </p>
               <template>
                 <div class="w-full mt-4">Small Error</div>
               </template>
-              <p
-                class="text-center py-5 text-text-secondary ups-font-label-semibold"
-              >
+              <p class="text-center py-5 text-text-secondary ups-font-label-semibold">
                 No product found for your search
               </p>
 
@@ -66,14 +51,10 @@ function handleAuthRoute() {
                   <template>
                     <li class="line-clamp-1 w-full">
                       <NuxtLink
-                        class="w-full text-left ups-text-paragraph2-medium flex items-center gap-x-3 p-1 rounded-lg hover:bg-gray-100 transition-colors line-clamp-1"
-                      >
+                        class="w-full text-left ups-text-paragraph2-medium flex items-center gap-x-3 p-1 rounded-lg hover:bg-gray-100 transition-colors line-clamp-1">
                         <span>img</span>
                         <div class="w-fit p-1.5 border rounded-lg bg-white">
-                          <Icon
-                            name="ph:magnifying-glass"
-                            class="w-5 h-4 text-text-secondary"
-                          />
+                          <Icon name="ph:magnifying-glass" class="w-5 h-4 text-text-secondary" />
                         </div>
                         <span class="line-clamp-1">product net</span>
                       </NuxtLink>
@@ -89,9 +70,14 @@ function handleAuthRoute() {
         </div>
       </div>
       <section class="flex items-center gap-x-2.5">
-        <NuxtLink to="/auth/login" @click="handleAuthRoute" title="account"
-          ><Icon name="ri:account-circle-line" class="w-6 h-6"
-        /></NuxtLink>
+        <div>
+          <NuxtLink v-if="signedInUser" to="/profile" title="account" class="font-medium underline underline-offset-2 text-green-600">
+           {{ signedInUser.name }}
+          </NuxtLink>
+          <NuxtLink v-else  to="/auth/login" title="account">
+            <Icon name="ri:account-circle-line" class="w-6 h-6" />
+          </NuxtLink>
+        </div>
         <NuxtLink to="/checkout" title="bag" class="relative">
           <Icon name="ri:shopping-bag-2-line" class="w-6 h-6" />
         </NuxtLink>
