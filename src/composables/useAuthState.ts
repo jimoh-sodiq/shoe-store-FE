@@ -62,9 +62,9 @@ export const useAuthState = () => {
     const {error: getProfileError, data: profileData} = await showCurrentUser();
     isLoading.value = false;
     loginError.value = error.value;
-    if (getProfileError.value) {
-      loginError.value = getProfileError.value;
-    }
+    // if (getProfileError.value) {
+    //   loginError.value = getProfileError.value;
+    // }
     if (loginError.value) {
       return useToast().error(loginError.value.message);
     }
@@ -95,8 +95,12 @@ export const useAuthState = () => {
     isLoading.value = false;
     verifyEmailError.value = error.value;
     if (error.value) {
-      // return useToast().error(error.value.message);
+      return useToast().error(error.value.message);
     }
+    useToast().success("Your email is successfully verified");
+    setTimeout(() => {
+      router.replace("/auth/login")
+    }, 3000)
   }
 
   async function showCurrentUser() {

@@ -5,13 +5,17 @@ const router = useRouter();
 
 const route = useRoute();
 
-const { isLoading, verifyEmailError, verifyEmail } = useAuthState();
+const isLoading = ref(false)
+
+const { verifyEmailError, verifyEmail } = useAuthState();
 
 onMounted(async () => {
+  isLoading.value = true
   await verifyEmail(
     route.query.email as LocationQueryValue,
     route.query.token as LocationQueryValue
   );
+  isLoading.value = false
 });
 </script>
 
