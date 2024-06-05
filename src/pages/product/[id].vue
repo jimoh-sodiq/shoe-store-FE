@@ -1,10 +1,14 @@
+<script setup lang="ts">
+const showMyBag = ref(false)
+</script>
+
 <template>
-  <main class="pt-10 pb-16 px-4">
+  <main class="pt-4 pb-16 px-4">
   <div class="mx-auto max-w-[1400px] w-full flex items-center gap-x-4 justify-between">
-    <NuxtLink to="/product" class="font-bold flex items-center p-2 gap-x-2"><Icon name="ph:arrow-left" class="w-6 h-8" />View products</NuxtLink>
-    <GlobalButton text="My bag" />
+    <NuxtLink to="/product" class="font-bold flex items-center p-2 gap-x-2 hover:underline transition-all"><Icon name="ph:arrow-left" class="w-6 h-8" />View products</NuxtLink>
+    <GlobalButton text="My bag" @click="showMyBag = true" />
   </div>
-    <div class="flex flex-col lg:flex-row gap-6 mx-auto max-w-[1400px] w-full mt-16">
+    <div class="flex flex-col lg:flex-row gap-6 mx-auto max-w-[1400px] w-full mt-10">
       <section class="w-full lg:w-2/3 grid gap-1 grid-cols-2">
         <NuxtImg
           v-for="n in 4"
@@ -120,5 +124,24 @@
         </ul>
       </div>
     </div>
+    <GlobalSlidingModal
+      type="right"
+      @close-modal="showMyBag = false"
+      v-if="showMyBag"
+    >
+      <main
+        class="fixed right-0 h-full overflow-auto bg-white max-w-[320px] w-[90%] sm:w-[75%] md:w-2/5 lg:w-2/6 lg:max-w-md py-6 px-4"
+      >
+        <div class="flex items-center justify-between gap-x-4">
+          <h1 class="font-semibold">My Bag</h1>
+          <Icon
+            name="ph:x-circle-bold"
+            class="w-6 h-6 cursor-pointer"
+            role="button"
+            @click="showMyBag = false"
+          />
+        </div>
+      </main>
+    </GlobalSlidingModal>
   </main>
 </template>

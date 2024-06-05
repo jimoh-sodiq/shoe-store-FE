@@ -12,7 +12,7 @@ const signedInUser = useSignedInUser()
 </script>
 
 <template>
-  <nav class="p-4 md:p-6 h-20 sticky top-0 bg-white z-50">
+  <nav class="p-4 md:p-6 h-20 sticky top-0 bg-white z-50  shadow-sm shadow-gray-100">
     <div class="max-w-[1400px] mx-auto flex items-center justify-between">
       <NuxtLink to="/">
         <div class="flex items-center gap-x-1 select-none">
@@ -32,37 +32,39 @@ const signedInUser = useSignedInUser()
           </label>
           <div v-if="searchString"
             class="absolute bg-white rounded-b-xl w-full border-t-[1px] border border-gray-300 p-2.5">
-            <p class="ups-font-label-semibold text-text-secondary">
-              search results:
+            <p class="jfont-label-normal text-text-secondary">
+              Top search results:
             </p>
             <div class="mt-2">
-              <p class="text-center py-5 text-text-secondary ups-font-label-semibold">
+              <p class="text-center py-5 text-text-secondary jfont-label-normal">
                 searching...
               </p>
               <template>
                 <div class="w-full mt-4">Small Error</div>
               </template>
-              <p class="text-center py-5 text-text-secondary ups-font-label-semibold">
+              <p class="text-center py-5 text-text-secondary jfont-label-medium">
                 No product found for your search
               </p>
 
               <div>
-                <ul>
-                  <template>
-                    <li class="line-clamp-1 w-full">
+                <ul class="space-y-1.5">
+                  <li class="line-clamp-1 w-full" v-for="n in 5">
                       <NuxtLink
-                        class="w-full text-left ups-text-paragraph2-medium flex items-center gap-x-3 p-1 rounded-lg hover:bg-gray-100 transition-colors line-clamp-1">
-                        <span>img</span>
-                        <div class="w-fit p-1.5 border rounded-lg bg-white">
+                        class="w-full text-left ups-text-paragraph2-medium flex items-center gap-x-3 p-1 rounded-lg bg-gray-50 border border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors line-clamp-1">
+                        <NuxtImg
+                          loading="lazy"
+                          src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                          class="inline-block h-9 w-9 overflow-clip rounded-lg bg-gray-200 bg-cover"
+                        />
+                        <div v-if="false" class="w-fit p-1.5 border rounded-lg bg-white">
                           <Icon name="ph:magnifying-glass" class="w-5 h-4 text-text-secondary" />
                         </div>
-                        <span class="line-clamp-1">product net</span>
+                        <span class="line-clamp-1 text-sm text-gray-600 font-medium">Red Shoe</span>
                       </NuxtLink>
                     </li>
-                  </template>
                 </ul>
                 <div class="mt-2">
-                  <button>asdfdasdf</button>
+                 <NuxtLink href="/product"><GlobalButton text="view all products" grow /></NuxtLink>
                 </div>
               </div>
             </div>

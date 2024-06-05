@@ -14,10 +14,10 @@ defineProps<{
 <template>
   <button
     :disabled="loading || disabled"
-    class="uppercase text-white font-bold bg-black hover:bg-black/80 transition-colors p-3 text-sm rounded-lg whitespace-nowrap"
+    class="text-white font-bold bg-black hover:bg-black/80 transition-colors p-3 text-sm rounded-lg whitespace-nowrap"
     :class="[
       grow ? 'w-full' : 'w-fit',
-      disabled ? 'cursor-not-allowed' : 'cursor-auto',
+      disabled ? 'cursor-not-allowed' : 'cursor-pointer',
     ]"
   >
     <span v-if="loading" class="inline-block">loading...</span>
