@@ -5,9 +5,13 @@ const debouncedSearchString = refDebounced(searchString, 500);
 
 const searchDivRef = ref(null);
 
-onClickOutside(searchDivRef, () => (searchString.value = ""));
+onClickOutside(searchDivRef, () => resetSearchString());
 
 const signedInUser = useSignedInUser()
+
+function resetSearchString(){
+  searchString.value = ""
+}
 
 </script>
 
@@ -50,11 +54,13 @@ const signedInUser = useSignedInUser()
                 <ul class="space-y-1.5">
                   <li class="line-clamp-1 w-full" v-for="n in 5">
                       <NuxtLink
+                        @click="resetSearchString"
+                        to="/product/dfsaf"
                         class="w-full text-left ups-text-paragraph2-medium flex items-center gap-x-3 p-1 rounded-lg bg-gray-50 border border-gray-200 cursor-pointer hover:bg-gray-100 transition-colors line-clamp-1">
                         <NuxtImg
                           loading="lazy"
                           src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                          class="inline-block h-9 w-9 overflow-clip rounded-lg bg-gray-200 bg-cover"
+                          class="inline-block h-9 w-9 overflow-clip rounded-lg bg-gray-200 object-cover"
                         />
                         <div v-if="false" class="w-fit p-1.5 border rounded-lg bg-white">
                           <Icon name="ph:magnifying-glass" class="w-5 h-4 text-text-secondary" />
@@ -64,7 +70,7 @@ const signedInUser = useSignedInUser()
                     </li>
                 </ul>
                 <div class="mt-2">
-                 <NuxtLink href="/product"><GlobalButton text="view all products" grow /></NuxtLink>
+                 <NuxtLink href="/product" @click="resetSearchString"><GlobalButton text="view all products" grow /></NuxtLink>
                 </div>
               </div>
             </div>
