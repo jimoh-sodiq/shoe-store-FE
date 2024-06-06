@@ -63,8 +63,8 @@ const testimonials = [
             see the latest holiday deal
           </p>
         </div>
-        <div class="mt-10 flex justify-evenly flex-wrap gap-6">
-          <ProductItem v-for="n in 4" />
+        <div class="px-4 mt-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 grid-flow-row-dense">
+          <ProductItem v-for="n in 4" class="" />
         </div>
         <NuxtLink to="/product" class="w-fit block mx-auto mt-10">
           <GlobalButton text="See all available products" />
